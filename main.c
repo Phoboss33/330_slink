@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     }
 
     while ((c = fgetc(file)) != EOF) {
-        if (argc == 2) {
+        if (argc <= 2) {
             lExist = 1;
             cExist = 1;
             wExist = 1;
@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
             if (c == '\n') {
                 stringCount++;
             }
-
-
             if (c < 33) {
                 isWord = 0;
             }
@@ -44,7 +42,8 @@ int main(int argc, char *argv[])
                 isWord = 1;
                 wordCount++;
             }
-                charCount++;
+            charCount++;
+
         }
         else {
             for (int i = 2;i < argc;i++) {
@@ -74,14 +73,17 @@ int main(int argc, char *argv[])
 
     }
 
+    fclose(file);
+
     if (lExist)
         printf("Строк: %d\n", stringCount);
     if (wExist)
         printf("Слов: %d\n", wordCount);
     if (cExist)
         printf("Симв: %d\n", charCount);
-    if (argc == 2)
-        printf("%s\n",argv[1]);
+    //if (argc == 2)
+        //printf("%s\n",argv[1]);
+
 
     return 0;
 }
